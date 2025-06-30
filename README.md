@@ -1,4 +1,4 @@
-# 🌟 Mon Portfolio avec Astro
+# 🌟 Mon Portfolio
 
 Bienvenue sur mon portfolio personnel, développé avec Astro, un framework moderne pour créer des sites web rapides et optimisés.
 
