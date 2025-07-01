@@ -2,7 +2,7 @@
 title: 'Peasy Money'
 description: 'Peasy Money est une application web de tracking d''investissement'
 pubDate: 'Jun 30 2025'
-heroImage: '../../assets/blog-placeholder-3.jpg'
+heroImage: '../../assets/peasy-money.png'
 ---
 
 # 🥜 Peasy Money
