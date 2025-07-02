@@ -57,7 +57,7 @@ import { SITE_TITLE, SITE_DESCRIPTION } from '../consts';
 	</body>
 </html>
 <script>
-  const userLang = navigator.language || navigator.userLanguage;
+  const userLang = navigator.language;
   if (!userLang.startsWith('fr')) {
     window.location.href = '/en/';
   }
