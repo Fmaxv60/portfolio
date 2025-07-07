@@ -1,4 +1,4 @@
-name: Build and Push Astro Site
+name: Build and Push Astro Site - dev
 
 on:
   push:
