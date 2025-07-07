@@ -51,6 +51,9 @@ body {
 body.no-gradient {
 	background: none;
 	background-color: #121212;
+	display: flex;
+	flex-direction: column;
+	min-height: 100vh;
 }
 html {
 	height: 100%;
@@ -72,8 +75,17 @@ main {
 	padding: 3em 1em;
 }
 main.home {
-	width: 960px;
-	font-size: 1.1rem;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: row;
+  flex: 1;
+  width: 100%;
+  max-width: 1400px;
+  margin: auto;
+  padding: 4rem 4rem;
+  gap: 3rem;
+  box-sizing: border-box;
 }
 h1,
 h2,
@@ -212,4 +224,38 @@ body.error-404 h1 {
 }
 body.error-404 p {
 	font-size: 1.25rem;
+}
+.centered-container {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 2rem;
+  flex-wrap: wrap;
+}
+.image-container {
+  flex: 1;
+  max-width: 500px;
+  aspect-ratio: 1 / 1; /* rend le conteneur carré */
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+.image-container img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover; /* remplit le carré sans déformer */
+  border-radius: 12px; /* optionnel : coins arrondis */
+}
+.text-container {
+  flex: 2;
+  max-width: none;
+}
+.text-container p {
+	text-align: justify;
+}
+@media (max-width: 768px) {
+  .centered-container {
+    flex-direction: column;
+    text-align: center;
+  }
 }
