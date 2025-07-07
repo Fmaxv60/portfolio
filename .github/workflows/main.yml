@@ -3,7 +3,7 @@ name: Build and Push Astro Site
 on:
   push:
     branches:
-      - develop
+      - main
 
 jobs:
   build:
@@ -27,4 +27,4 @@ jobs:
         with:
           context: .
           push: true
-          tags: fmaxv60/portfolio-dev:latest
+          tags: fmaxv60/portfolio:latest
