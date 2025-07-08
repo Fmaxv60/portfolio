@@ -12,8 +12,8 @@ Bienvenue sur mon portfolio personnel, développé avec Astro, un framework mode
 
 ```bash
 # Cloner le projet
-git clone https://github.com/ton-utilisateur/mon-portfolio.git
-cd mon-portfolio
+git clone https://github.com/Fmaxv60/portfolio.git
+cd portfolio
 
 # Installer les dépendances
 npm install
