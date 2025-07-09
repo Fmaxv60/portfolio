@@ -33,7 +33,7 @@ Pour ma part, j'ai décide de partir sur une instance **CPX21** avec 3 VCPU AMD 
 
 #### OVH 
 
-Pour pouvoir héberger mes différents sites, il me faut des noms de domaines. Je voulais d'abord deux noms de domaine [mviolette.fr](mviolette.fr) et [peasy-money.fr](peasy-money.fr). j'ai pris ces noms sur OVH car la gestion est simple, le prix est abordable et je pouvais acheter plusieurs noms de domaine en même temps. Ainsi, pour 13€ j'ai pu obtenir deux noms de domaines avec 5 sous-domaines chacun et une adresse mail gratuite par domaine. Dans le cas de Peasy Money, l'adresse mail va être très utile pour notamment envoyer les emails de confirmation d'inscription ou les emails d'alertes. Les sous-domaines sont aussi très utiles car cela me permet de créer différents sites notamment pour Peasy Money avec le site principal de l'application et un site de présentation de l'application.
+Pour pouvoir héberger mes différents sites, il me faut des noms de domaines. Je voulais d'abord deux noms de domaine [mviolette.fr](https://mviolette.fr) et [peasy-money.fr](https://peasy-money.fr). j'ai pris ces noms sur OVH car la gestion est simple, le prix est abordable et je pouvais acheter plusieurs noms de domaine en même temps. Ainsi, pour 13€ j'ai pu obtenir deux noms de domaines avec 5 sous-domaines chacun et une adresse mail gratuite par domaine. Dans le cas de Peasy Money, l'adresse mail va être très utile pour notamment envoyer les emails de confirmation d'inscription ou les emails d'alertes. Les sous-domaines sont aussi très utiles car cela me permet de créer différents sites notamment pour Peasy Money avec le site principal de l'application et un site de présentation de l'application.
 
 ## Architecture du serveur
 
