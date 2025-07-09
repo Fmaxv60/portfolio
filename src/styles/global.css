@@ -249,7 +249,6 @@ body.error-404 p {
 .text-container {
   flex: 2;
   max-width: none;
-  padding-top: 40px;
 }
 .text-container p {
 	text-align: justify;
