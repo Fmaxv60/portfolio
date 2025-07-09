@@ -80,14 +80,14 @@ Caddy dispose de tellement de paramètres et de configuration possible que tous 
 
 Maintenant que nous avons vu comment rediriger le trafic vers les différents services et leur conteneur, parlons un peu plus de ces fameux services.
 
-#### Portfolio personnel ([mviolette.fr](https://mviolette.fr))
+#### Portfolio ([mviolette.fr](https://mviolette.fr))
 
 Le portfolio repose sur deux conteneurs : un conteneur Astro, chargé de builder et déployer le site, et un conteneur Watchtower, que je détaillerai un peu plus loin. Comme vous pouvez le voir, j’ai choisi de faire de la section “projets” une sorte de blog, où je publie un nouveau post à chaque fois que j’ai un projet à présenter. Le site est donc amené à évoluer régulièrement. Pour éviter de devoir reconstruire manuellement le conteneur à chaque mise à jour, j’ai mis en place un script GitHub Actions. À chaque push sur la branche master, ce script construit une nouvelle image Docker et la publie sur Docker Hub. C’est là qu’intervient Watchtower : il surveille le dépôt Docker Hub et, dès qu’une nouvelle version de l’image est disponible, il la télécharge et redémarre automatiquement le conteneur avec cette nouvelle version. Grâce à ce système, le projet bénéficie d’une CI/CD complète : le site se met à jour automatiquement à chaque push de code. 
 
 Pour en savoir un peu plus sur mon portfolio et comment je l'ai construit, vous pouvez aller consulter le [post](/blog/portfolio) que j'ai fait dessus.
  
 
-#### Peasy Money Stack ([peasy-money.fr](https://peasy-money.fr))
+#### Peasy Money ([peasy-money.fr](https://peasy-money.fr))
 
 Je n'ai pas encore mis en place l'architecture de Peasy Money car le site n'est pas encore prêt. En attendant, j'ai mis en place une simple page HTML, servi par Caddy, qui indique que le site est en cours de construction. Cependant, j'ai déjà une bonne idéee de ce à quoi va ressembler son architecture, elle sera très similaire à celle du portfolio pour la CI/CD. Un conteneur Watchtower va s'occuper de mettre à jour les conteneurs Next.js pour le frontend et le conteneur FastAPI pour le backend. Il y aura aussi un conteneur PostgreSQL pour stocker la base de données de l'application.
 
