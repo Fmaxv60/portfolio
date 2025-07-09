@@ -1,5 +1,5 @@
 ---
-title: 'Peasy Money'
+title: 'Peasy Money, le tracker de PEA'
 description: 'Peasy Money est une application web de tracking d''investissement'
 pubDate: 'Jun 30 2025'
 heroImage: '../../assets/peasy-money.png'

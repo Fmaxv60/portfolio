@@ -1,5 +1,5 @@
 ---
-title: 'Portfolio'
+title: 'Mon portfolio'
 description: 'Petit portfolio fait avec Astro'
 pubDate: 'Jul 1 2025'
 heroImage: '../../assets/portfolio.jpg'

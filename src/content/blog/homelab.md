@@ -66,7 +66,7 @@ mviolette.fr {
     file_server
 }
 ```
-Plutôt que de rediriger vers un conteneur, on peut également servir des fichiers statiques directement avec Caddy. En montant un volume contenant les fichiers statiques (comme un site HTML) dans le conteneur Caddy via Docker Compose, celui-ci pourra les exposer automatiquement à l'adresse définie par le nom de domaine. Ainsi, au démarrage du conteneur, Caddy servira le site statique depuis le répertoire /srv, sans avoir besoin d’un reverse proxy vers un autre service.
+Plutôt que de rediriger vers un conteneur, on peut également servir des fichiers statiques directement avec Caddy. En montant un volume contenant les fichiers statiques (comme un site HTML) dans le conteneur Caddy via Docker Compose, celui-ci pourra les exposer automatiquement à l'adresse définie par le nom de domaine. Ainsi, au démarrage du conteneur, Caddy servira le site statique depuis le répertoire /srv, sans avoir besoin d’un reverse proxy vers un autre service. Cela me permet notamment de déployer un site simple temporaire comme je l'ai fait pour [peasy-money.fr](https://peasy-money.fr).
  ```
 mviolette.fr {
     root * /srv
@@ -103,4 +103,4 @@ Avec cette architecture, j’ai réussi à mettre en place un environnement modu
 
 Grâce à Docker, Portainer, Caddy, Watchtower et Umami, je dispose d’un écosystème complet : déploiement automatisé, gestion centralisée, sécurité renforcée, et suivi des performances en temps réel. Le tout hébergé sur une instance flexible et économique, sans engagement, ce qui me permet de tester, ajuster et faire évoluer mes projets librement.
 
-Ce setup me permet non seulement de gagner du temps, mais aussi de mieux comprendre et maîtriser les outils modernes du DevOps. Et surtout, il me donne la liberté de créer, expérimenter et apprendre en continu.
+Ce setup me permet non seulement de gagner du temps, mais aussi de mieux comprendre et maîtriser les outils modernes du DevOps. Et surtout, il me donne la liberté de créer, expérimenter et apprendre en continu. Pour le moment, mon serveur ne dispose pas de milliers de services mais au vu du plaisir que je prends à découvrir et ajouter différents services, l'architecture risque de beaucoup changer et de s'enrichir.
