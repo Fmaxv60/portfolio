@@ -1,0 +1,61 @@
+---
+import BaseHead from '../../components/BaseHead.astro';
+import Header from '../../components/Header.astro';
+import Footer from '../../components/Footer.astro';
+import { SITE_TITLE, SITE_DESCRIPTION } from '../../consts';
+---
+
+<!doctype html>
+<html lang="en">
+	<head>
+		<BaseHead title={SITE_TITLE} description={SITE_DESCRIPTION} />
+	</head>
+	<body class="no-gradient">
+		<Header />
+		<main class="home">
+			<div class="notice-banner">
+				⚠️ English version is only available for the homepage.
+			</div>
+			<h1>🚀 Hello, I'm Maxime Violette!</h1>
+
+			<p>
+			Passionate about <strong>web development</strong>, <strong>embedded systems</strong>, and <strong>networking</strong>, 
+			I enjoy designing projects that are functional, efficient, and creative.
+			</p>
+
+			<p>
+			👨‍💻 On the web side, I work with technologies like <strong>React</strong>, <strong>Next.js</strong>, 
+			<strong>FastAPI</strong>, and <strong>Node.js</strong>. I've built several projects, including personal dashboards 
+			and web games like a multiplayer <em>Spotify Game</em>.
+			</p>
+
+			<p>
+			🔧 I'm also interested in <strong>embedded systems</strong>: <strong>STM32</strong>, <strong>Arduino</strong>, 
+			<strong>FreeRTOS</strong>, with proficiency in protocols like <strong>CAN</strong> and <strong>RS232</strong>. 
+			Electronics and low-level programming are among my favorite fields.
+			</p>
+
+			<p>
+			🌐 Thanks to my knowledge in <strong>networking</strong> (Cisco, server management, DNS, domains), 
+			I'm able to make my services securely accessible.
+			</p>
+
+			<p>
+			🎶 Outside of development, I compose music using <strong>FL Studio</strong> with virtual synths 
+			like <strong>Spire</strong>. Creativity isn't limited to code!
+			</p>
+
+			<h2>🛠️ Some Projects I've Built</h2>
+			<ul>
+			<li>🎧 <strong>Spotigame</strong> – A multiplayer game based on Spotify where you guess who a song belongs to.</li>
+			<li>📊 <strong>Personal Dashboard</strong> – A web app to visualize my data and statistics.</li>
+			<li>🔌 <strong>Embedded Projects</strong> – From STM32 peripheral control with FreeRTOS to melodies on Arduino.</li>
+			</ul>
+
+			<p>
+			🔗 Feel free to check out my <a href="/blog">projects</a>, my <a href="/cv_en.pdf" target="_blank" rel="noopener noreferrer">resume</a>, or contact me to chat or collaborate!
+			</p>
+		</main>
+		<Footer />
+	</body>
+</html>

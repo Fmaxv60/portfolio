@@ -1,0 +1,93 @@
+---
+import BaseHead from '../../components/BaseHead.astro';
+import Header from '../../components/Header.astro';
+import Footer from '../../components/Footer.astro';
+import { SITE_TITLE, SITE_DESCRIPTION } from '../../consts';
+---
+
+<!doctype html>
+<html lang="fr">
+	<head>
+		<BaseHead title={SITE_TITLE} description={SITE_DESCRIPTION} />
+	</head>
+	<body>
+		<Header />
+		<main>
+			<div class="first-sentence"><h1>Prêt à en découvrir plus sur moi ?</h1></div>
+				<div class="timeline">
+					<div class="timeline-item">
+						<div class="timeline-content">
+						<h2>7 septembre 2003<br/>Ma naissance</h2>
+						<p>
+							Il faut bien commencer quelque part, et pour moi, tout commence ce jour là, à Beauvais.
+						</p>
+					</div>
+
+					<div class="timeline-item">
+						<div class="timeline-content">
+						<h2>Juin 2015<br/>Diplômé des olympiades de mathématiques de l'académie d'Amiens</h2>
+						<p>
+							Premier "diplôme" que j'ai obtenu, c'était un concours de mathématiques organisé par l'académie d'Amiens en 
+							équipe. En ayant finit premier de mon collège, j'ai obtenu un diplôme. Une bonne expèrience même si je 
+							n'avais pas pris le concours au sérieux et que je ne pensais pas gagner.
+						</p>
+					</div>
+
+					<div class="timeline-item">
+						<div class="timeline-content">
+						<h2>2018 - 2021<br/>Obtention du Baccalauréat général avec mention très bien</h2>
+						<p>
+							Malgré le contexte sanitaire et des épreuves supprimées au profit du contrôle continu, j'ai réussi à 
+							obtenir mon baccalauréat général avec mention très bien. J'ai choisi de me spécialiser en mathématiques et 
+							en physique-chimie. Cela ouvre la grande question : Que faire après le bac ? (Continue de scroller, tu vas 
+							vite le savoir !)
+						</p>
+					</div>
+
+					<div class="timeline-item">
+						<div class="timeline-content">
+						<h2>Juin - Août 2021<br/>Premier job d'étéà Kindy</h2>
+						<p>
+							J'ai eu l'opportunité de travailler dans l'entreprise de ma mère et ainsi de découvrir le monde du travail
+							mais surtout de gagner mes premiers euros. J'ai travaillé en tant qu'agent de manutention et mes tâches
+							principales étaient de préparer les commandes, gèrer les stocks et faire de la mise en rayon. J'ai eu la 
+							chance de mettre en oeuvre mes compétences en informatique pour améliorer la gestion des stocks via excel.
+						</p>
+					</div>
+
+					<div class="timeline-item">
+						<div class="timeline-content">
+						<h2>2021 - 2023<br/>Cours préparatoire intégré à Unilasalle Amiens</h2>
+						<p>
+							Normalement, si tu as bien lu la page d'accueil, c'est pas une surprise. J'ai choisi d'intégrer une école 
+							d'ingénieur dans le domaine de l'informatique et des réseaux. Unilasalle Amiens propose un cursus en 5 ans
+							avec un cursus préparatoire intégré de 2 ans, et ensuite soit une formation initiale, soit une formation 
+							en alternance.
+						</p>
+					</div>
+
+					<div class="timeline-item">
+						<div class="timeline-content">
+						<h2>Juin - Août 2023<br/>Second job d'été à Saverdeck</h2>
+						<p>
+							Ce concours m'a permis de mettre en avant mes compétences en électronique et de me mesurer à d'autres 
+							étudiants de la région. Même si je n'ai pas remporté la première place, cette expérience a été très enrichissante
+							et m'a pas mal challengé.
+						</p>
+					</div>
+
+					<div class="timeline-item">
+						<div class="timeline-content">
+						<h2>Mars 2023<br/>3ème au concours Worldskills Electronics régional</h2>
+						<p>
+							Ce concours m'a permis de mettre en avant mes compétences en électronique et de me mesurer à d'autres 
+							étudiants de la région. Même si je n'ai pas remporté la première place, cette expérience a été très enrichissante
+							et m'a pas mal challengé.
+						</p>
+					</div>
+				</div>
+			</div>
+		</main>
+		<Footer />
+	</body>
+</html>

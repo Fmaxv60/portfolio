@@ -6,35 +6,48 @@ import Footer from '../components/Footer.astro';
 import FormattedDate from '../components/FormattedDate.astro';
 import { Image } from 'astro:assets';
 
+
 type Props = CollectionEntry<'blog'>['data'];
 
-const { title, description, pubDate, updatedDate, heroImage } = Astro.props;
+
+const { title, description, pubDate, updatedDate, heroImage, tags } = Astro.props;
 ---
 
-<html lang="en">
+<html lang="fr">
 	<head>
 		<BaseHead title={title} description={description} />
 		<style>
-			main {
-				width: calc(100% - 2em);
-				max-width: 100%;
-				margin: 0;
+			.layout {
+				display: flex;
+				justify-content: center;
+				gap: 2rem;
+				max-width: 1200px;
+				margin: 0 auto;
+				padding: 2em 1em;
 			}
 			.hero-image {
-				width: 100%;
+				width: 960px;
+				max-width: calc(100% - 2em);
+				margin: 0 auto;
+				aspect-ratio: 16 / 9;
+				overflow: hidden;
 			}
 			.hero-image img {
+				width: 100%;
+				height: 100%;
+				object-fit: cover;
 				display: block;
-				margin: 0 auto;
 				border-radius: 12px;
 				box-shadow: var(--box-shadow);
 			}
 			.prose {
-				width: 720px;
+				width: 960px;
 				max-width: calc(100% - 2em);
 				margin: auto;
 				padding: 1em;
 				color: rgb(var(--gray-dark));
+				font-size: 1.1rem;
+				text-align: justify;
 			}
 			.title {
 				margin-bottom: 1em;
@@ -52,35 +65,56 @@ const { title, description, pubDate, updatedDate, heroImage } = Astro.props;
 			.last-updated-on {
 				font-style: italic;
 			}
+			.tags {
+				margin-top: 0.5em;
+			}
+			.tag {
+				display: inline-block;
+				background-color: #f0f0f0;
+				color: #333;
+				padding: 0.2em 0.5em;
+				margin-right: 0.3em;
+				border-radius: 4px;
+				font-size: 0.75em;
+			}
 		</style>
+		<script type="module" src="/scripts/TableOfContents.js"></script>
 	</head>
 
-	<body>
+	<body class="no-gradient">
 		<Header />
-		<main>
-			<article>
-				<div class="hero-image">
-					{heroImage && <Image width={1020} height={510} src={heroImage} alt="" />}
-				</div>
-				<div class="prose">
-					<div class="title">
-						<div class="date">
-							<FormattedDate date={pubDate} />
-							{
-								updatedDate && (
-									<div class="last-updated-on">
-										Last updated on <FormattedDate date={updatedDate} />
-									</div>
-								)
-							}
-						</div>
-						<h1>{title}</h1>
-						<hr />
+		<div class="page-with-toc">
+			<nav class="toc" id="toc"></nav>
+			<main>
+				<article>
+					<div class="hero-image">
+						{heroImage && <Image width={1020} height={510} src={heroImage} alt="" />}
 					</div>
-					<slot />
-				</div>
-			</article>
-		</main>
+					<div class="prose">
+						<div class="title">
+							<div class="date">
+								<FormattedDate date={pubDate} />
+								{updatedDate && (
+									<div class="last-updated-on">
+										Mise à jour le <FormattedDate date={updatedDate} />
+									</div>
+								)}
+								{tags && (
+									<div class="tags">
+										{tags.map(tag => (
+											<span class="tag">{tag}</span>
+										))}
+									</div>
+								)}
+							</div>
+							<h1>{title}</h1>
+							<hr />
+						</div>
+						<slot />
+					</div>
+				</article>
+			</main>
+		</div>
 		<Footer />
 	</body>
 </html>
