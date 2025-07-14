@@ -1,6 +1,6 @@
 # 🌟 Mon Portfolio
 
-> Mon portfolio personnel pour présenter mes projets, mes compétences et mon parcours. Développé avec [Astro](https://astro.build/).
+Mon portfolio personnel pour présenter mes projets, mes compétences et mon parcours. Développé avec [Astro](https://astro.build/).
 
 **[Voir le site en direct](https://mviolette.fr)**
 
