@@ -10,4 +10,3 @@ RUN npm run build
 # étape finale
 FROM nginx:alpine
 COPY --from=0 /app/dist /usr/share/nginx/html
-
