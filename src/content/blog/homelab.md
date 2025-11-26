@@ -6,6 +6,9 @@ heroImage: '../../assets/homelab.jpg'
 tags: ['Self-hosted', 'Linux', 'Docker']
 ---
 
+> Cette architecture est obsolète, j'ai craqué pour un mini pc en reconditionné. Le nouveau post arrivera bientôt.
+
+
 ## Mon homelab
 
 Pour que ce site soit accessible, il fallait que je l’héberge quelque part, pour le diffuser sur Internet.  
