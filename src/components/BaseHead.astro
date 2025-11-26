@@ -42,6 +42,13 @@ const { title, description, image = FallbackImage } = Astro.props;
 <meta name="title" content={title} />
 <meta name="description" content={description} />
 
+<!-- Script Umami -->
+<script
+  defer
+  src="http://192.168.1.21:3000/script.js"
+  data-website-id="178c8384-9a6c-400b-acd3-e7f70592114d">
+</script>
+
 <!-- Open Graph / Facebook -->
 <meta property="og:type" content="website" />
 <meta property="og:url" content={Astro.url} />
