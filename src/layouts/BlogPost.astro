@@ -96,7 +96,7 @@ const { title, description, pubDate, updatedDate, heroImage, tags } = Astro.prop
 								<FormattedDate date={pubDate} />
 								{updatedDate && (
 									<div class="last-updated-on">
-										Mise à jour le <FormattedDate date={updatedDate} />
+										Dernière mise à jour : <FormattedDate date={updatedDate} />
 									</div>
 								)}
 								{tags && (
