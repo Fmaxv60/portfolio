@@ -6,8 +6,6 @@ heroImage: '../../assets/peasy-money.png'
 tags: ['Next.js', 'Python', 'SQL', 'Self-hosted']
 ---
 
-## Peasy Money, le tracker de PEA
-
 Après être devenu alternant, j'ai cherché un moyen efficace d'épargner. Je me suis alors renseigné et j'ai décidé d'ouvrir un PEA. Cependant, la banque vers laquelle je me suis tourné propose une interface vétuste et très peu pratique. J'ai donc décidé de faire mon propre dashboard. Je pensais, à tort, que cela ne serait pas si compliqué, mais le projet s'est révélé plus complexe que prévu. En effet, faire des calculs et proposer des indicateurs pertinents est un vrai métier. J'ai essayé tout de même de me débrouiller et pour le moment, je suis satisfait de ce que j'ai réussi à faire.
 
 Le projet se compose de :
