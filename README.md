@@ -18,34 +18,8 @@ Mon portfolio personnel pour présenter mes projets, mes compétences et mon par
 - **Framework**: [Astro](https://astro.build/)
 - **Langage**: [TypeScript](https://www.typescriptlang.org/)
 - **Contenu**: [MDX](https://mdxjs.com/)
-- **Déploiement**: Serveur personnel ([Voir l'article](https://mviolette.fr/blog/homelab))
+- **Déploiement**: Serveur personnel ([Voir l'article](https://mviolette.fr/blog/vps))
 
-## 🚀 Démarrage rapide
-
-Suivez ces étapes pour lancer une copie du projet sur votre machine locale.
-
-### Prérequis
-
-- [Node.js](https://nodejs.org/en/) (Version 18.x ou supérieure recommandée)
-- [npm](https://www.npmjs.com/) (ou pnpm, yarn)
-
-### 📦 Installation
-
-```bash
-# 1. Cloner le projet
-git clone https://github.com/Fmaxv60/portfolio.git
-
-# 2. Naviguer dans le répertoire du projet
-cd portfolio
-
-# 3. Installer les dépendances
-npm install
-
-# 4. Lancer le serveur de développement
-npm run dev
-
-# Le site est maintenant accessible à l'adresse http://localhost:4321
-```
 #
 
 ✨ N’hésite pas à me contacter via LinkedIn ou par email pour toute question ou collaboration !
