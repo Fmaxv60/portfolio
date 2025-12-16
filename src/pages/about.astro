@@ -1,0 +1,404 @@
+---
+import BaseHead from '../components/BaseHead.astro';
+import Header from '../components/Header.astro';
+import Footer from '../components/Footer.astro';
+import { SITE_TITLE, SITE_DESCRIPTION } from '../consts';
+---
+
+<!doctype html>
+<html lang="fr">
+	<head>
+		<BaseHead title={SITE_TITLE} description={SITE_DESCRIPTION} />
+		<style>
+			body {
+				background-size: 100% 240px;
+			}
+
+			.timeline-bar {
+				position: absolute;
+				top: 0;
+				left: 0;
+				height: 4px;
+				width: 100vw;
+				background: linear-gradient(90deg, var(--accent) 0%, var(--accent-dark) 100%);
+				transform-origin: left center;
+				transform: scaleX(0);
+				pointer-events: none;
+				z-index: 4;
+			}
+
+			main.timeline-horizontal {
+				width: 100% !important;
+				max-width: 100% !important;
+				padding: 0 0 2rem 0 !important;
+				overflow-x: hidden !important; /* on laisse GSAP gérer la translation */
+				overflow-y: visible !important; /* scroll vertical naturel */
+				-webkit-overflow-scrolling: touch;
+			}
+
+			.first-sentence {
+				position: sticky; /* Reste fixe en haut lors du scroll */
+				top: 1rem; /* un peu plus bas */
+				z-index: 5;
+				text-align: center;
+				margin: 0;
+				padding: 1rem 2rem;
+				background: transparent; /* pas de fond */
+				color: #fff;
+				opacity: 0;
+				animation: fadeInDown 0.8s ease forwards;
+			}
+
+			.first-sentence h1 {
+				font-size: 2rem;
+				color: #fff;
+				margin: 0;
+			}
+
+			.first-sentence h2 {
+				font-size: 1.5rem;
+				color: rgb(var(--gray-dark));
+				margin-top: 10px;
+				margin-bottom: 20px;
+			}
+
+			.timeline-wrapper {
+				position: relative;
+				overflow: hidden; /* masque la translation horizontale */
+			}
+
+			.timeline {
+				position: relative;
+				display: flex;
+				flex-wrap: nowrap;
+				gap: 6rem; /* plus d'espace entre les cartes */
+				padding-top: 5rem;
+				padding-right: max(6rem, calc(50vw - 175px)); /* centre la dernière carte */
+				padding-bottom: 3rem;
+				padding-left: max(6rem, calc(50vw - 175px)); /* centre la 1ère carte (350px/2) */
+				min-width: max-content;
+				/* GSAP remplace le scroll-snap */
+			}
+
+			/* Espace côté droit pour éviter que la dernière carte colle au bord */
+			.timeline::after {
+				content: '';
+				flex: 0 0 0; /* plus besoin car padding-right gère maintenant */
+			}
+
+			.timeline-item {
+				position: relative;
+				opacity: 0; /* révélé par GSAP */
+				transform: translateY(60px);
+				flex-shrink: 0;
+			}
+
+
+			.timeline-content {
+				position: relative;
+				width: 350px;
+				padding: 2rem;
+				background: #1a1a1a;
+				border: 1px solid rgba(var(--gray), 0.2);
+				border-radius: 12px;
+				box-shadow: var(--box-shadow);
+				transition: all 0.3s ease;
+				margin-top: 3rem;
+			}
+
+			.timeline-content:hover {
+				box-shadow: 0 8px 30px rgba(214, 79, 255, 0.3);
+				border-color: var(--accent);
+			}
+
+			.timeline-content::before {
+				content: '';
+				position: absolute;
+				top: -3rem;
+				left: 50%;
+				transform: translateX(-50%);
+				width: 20px;
+				height: 20px;
+				background: linear-gradient(135deg, var(--accent) 0%, var(--accent-dark) 100%);
+				border-radius: 50%;
+				box-shadow: 0 0 0 4px #121212, 0 0 0 8px var(--accent);
+				animation: pulse 2s ease infinite;
+			}
+
+			.timeline-content h2 {
+				color: var(--accent);
+				margin-bottom: 1rem;
+				font-size: 1.3rem;
+			}
+
+			.card-title{
+				color: #fff !important;
+			}
+
+			.timeline-content p {
+				line-height: 1.6;
+				color: rgb(var(--gray-dark));
+			}
+
+			@keyframes fadeInDown {
+				from {
+					opacity: 0;
+					transform: translateY(-30px);
+				}
+				to {
+					opacity: 1;
+					transform: translateY(0);
+				}
+			}
+
+			@keyframes fadeInUp {
+				from {
+					opacity: 0;
+					transform: translateY(30px);
+				}
+				to {
+					opacity: 1;
+					transform: translateY(0);
+				}
+			}
+
+			@keyframes growLineHorizontal {
+				to {
+					width: 100%;
+				}
+			}
+
+			@keyframes pulse {
+				0%, 100% {
+					box-shadow: 0 0 0 4px #121212, 0 0 0 8px var(--accent);
+				}
+				50% {
+					box-shadow: 0 0 0 4px #121212, 0 0 0 12px rgba(214, 79, 255, 0.5);
+				}
+			}
+
+			@media (max-width: 768px) {
+				.timeline-content {
+					width: 280px;
+				}
+			}
+		</style>
+				<script>
+					import { gsap } from "gsap";
+					import { ScrollTrigger } from "gsap/ScrollTrigger";
+					
+					// On enregistre le plugin
+					gsap.registerPlugin(ScrollTrigger);
+
+						const setupTimelineScroll = () => {
+						const wrapper = document.querySelector('.timeline-wrapper');
+						const track = document.querySelector('.timeline');
+							const bar = document.querySelector('.timeline-bar');
+						
+						if (!wrapper || !track) return;
+
+						// Calcul de la distance à parcourir
+						const getScrollAmount = () => {
+							let trackWidth = track.scrollWidth;
+							return -(trackWidth - window.innerWidth);
+						};
+
+							// 1. L'animation principale (Le scroll horizontal)
+							const tween = gsap.to(track, {
+							x: getScrollAmount,
+							ease: "none",
+							scrollTrigger: {
+								trigger: wrapper,
+								start: "top top",
+								end: () => `+=${getScrollAmount() * -1}`, // La durée du scroll est égale à la largeur
+								pin: true,
+								scrub: 1,
+								invalidateOnRefresh: true,
+							}
+						});
+
+						// 2. L'animation des cartes individuelles
+						const items = document.querySelectorAll('.timeline-item');
+						
+						items.forEach((item) => {
+							gsap.to(item, {
+								y: 0,
+								opacity: 1, // On utilise opacity car tu l'as mis en CSS
+								duration: 0.5,
+								ease: "power2.out",
+								scrollTrigger: {
+									trigger: item, // Le déclencheur est l'item lui-même
+									containerAnimation: tween, // On lie ça au scroll horizontal
+									
+									// "left" = bord gauche de l'item
+									// "90%" = 90% de la largeur de l'écran
+									// Donc: "Quand le bord gauche de l'item atteint 90% de l'écran"
+									start: "left 60%", 
+									
+									toggleActions: "play none none reverse", // Rejoue à l'envers si on remonte
+									// ou utilise "play none none none" pour ne le jouer qu'une fois
+								}
+							});
+
+							// 1bis. Barre violette qui se remplit sur toute la durée du scroll horizontal
+							if (bar) {
+								gsap.to(bar, {
+									scaleX: 1,
+									scrollTrigger: {
+										trigger: wrapper,
+										start: "top top",
+										end: () => `+=${getScrollAmount() * -1}`,
+										scrub: true,
+									},
+								});
+							}
+						});
+						
+						// Rafraichir au redimensionnement
+							ScrollTrigger.addEventListener("refreshInit", () => {
+								gsap.set(track, {x: 0});
+								if (bar) gsap.set(bar, {scaleX: 0});
+							});
+					};
+
+					// Lancement au chargement
+					document.addEventListener('DOMContentLoaded', setupTimelineScroll);
+					// Gestion du rechargement Astro ViewTransitions (si utilisé plus tard)
+					document.addEventListener('astro:page-load', setupTimelineScroll);
+				</script>
+	</head>
+	<body>
+		<Header />
+		<main class="timeline-horizontal">
+			<div class="first-sentence">
+				<h1>Prêt à en découvrir plus sur moi ?</h1>
+				<h2>Retrace mon parcours en scrollant !</h2>
+			</div>
+				<div class="timeline-wrapper">
+				<div class="timeline-bar"></div>
+				<div class="timeline">
+					<div class="timeline-item">
+						<div class="timeline-content">
+							<h2>7 septembre 2003<br/></h2>
+							<h2 class="card-title">Ma naissance</h2>
+							<p>
+								Il faut bien commencer quelque part, et pour moi, tout commence ce jour là, à Beauvais.
+							</p>
+						</div>
+					</div>
+
+					<div class="timeline-item">
+						<div class="timeline-content">
+							<h2>Juin 2015<br/></h2>
+						<h2 class="card-title">Diplômé des olympiades de mathématiques de l'académie d'Amiens</h2>
+						<p>
+							Premier "diplôme" que j'ai obtenu, c'était un concours de mathématiques organisé par l'académie d'Amiens en 
+							équipe. En ayant fini premier de mon collège, j'ai obtenu un diplôme. Une bonne expérience même si je 
+							n'avais pas pris le concours au sérieux et que je ne pensais pas gagner.
+						</p>
+						</div>
+					</div>
+
+					<div class="timeline-item">
+						<div class="timeline-content">
+							<h2>2018 - 2021<br/></h2>
+						<h2 class="card-title">Obtention du Baccalauréat général avec mention très bien</h2>
+						<p>
+							Malgré le contexte sanitaire et des épreuves supprimées au profit du contrôle continu, j'ai réussi à 
+							obtenir mon baccalauréat général avec mention très bien spécialités mathématiques et physique-chimie. 
+							Maintenant, que faire après le bac ? (Continue de scroller, tu vas vite le savoir !)
+							</p>
+						</div>
+					</div>
+
+					<div class="timeline-item">
+						<div class="timeline-content">
+							<h2>Juin - Août 2021<br/></h2>
+						<h2 class="card-title">Premier job d'été à Kindy</h2>
+						<p>
+							J'ai eu l'opportunité de travailler dans l'entreprise de ma mère et ainsi de découvrir le monde du travail
+							mais surtout de gagner mes premiers euros. J'ai travaillé en tant qu'agent de manutention et mes tâches
+							principales étaient de préparer les commandes, gérer les stocks et faire de la mise en rayon. J'ai eu la 
+							chance de mettre en œuvre mes compétences en informatique pour améliorer la gestion des stocks via Excel.
+							</p>
+						</div>
+					</div>
+
+					<div class="timeline-item">
+						<div class="timeline-content">
+							<h2>2021 - 2023<br/></h2>
+							<h2 class="card-title">Cours préparatoire intégré à Unilasalle Amiens</h2>
+							<p>
+								Normalement, si tu as bien lu la page d'accueil, c'est pas une surprise. J'ai choisi d'intégrer une école 
+								d'ingénieur dans le domaine de l'informatique et des réseaux. Unilasalle Amiens propose un cursus en 5 ans
+								avec un cursus préparatoire intégré de 2 ans, et ensuite soit une formation initiale, soit une formation 
+								en alternance.
+							</p>
+						</div>
+					</div>
+
+					<div class="timeline-item">
+						<div class="timeline-content">
+							<h2>Juin - Août 2023<br/></h2>
+						<h2 class="card-title">Second job d'été à Saverdeck</h2>
+						<p>
+							Lors de mon apprentissage à Unilasalle, il nous a été demandé de réaliser un stage de 4 semaines. Nous devions
+							être actifs et non en observation. J'ai donc décidé de faire mon stage en même temps que mon job d'été comme ça
+							je ne perdais pas de temps. J'ai donc travaillé chez Saverdeck pendant deux mois, en tant qu'agent opérateur.
+							Le travail consistait principalement à vérifier la qualité des bouteilles et à les emballer.
+							</p>
+						</div>
+					</div>
+
+					<div class="timeline-item">
+						<div class="timeline-content">
+							<h2>Mars 2023<br/></h2>
+						<h2 class="card-title">3ème au concours Worldskills Electronics régional</h2>
+						<p>
+							Ce concours, proposé par mon professeur d'électronique, m'a permis de mettre en avant mes compétences en 
+							électronique et de me mesurer à d'autres étudiants de la région. Même si je n'ai pas remporté la première place, 
+							cette expérience a été très enrichissante et m'a beaucoup challengé.
+							</p>
+						</div>
+					</div>
+
+					<div class="timeline-item">
+						<div class="timeline-content">
+							<h2>Août 2023<br/></h2>
+						<h2 class="card-title">Début de mon alternance à Valeo</h2>
+						<p>
+							Après deux années de cours préparatoire, j'ai décidé de poursuivre ma formation en alternance. Après de nombreuses 
+							recherches et de nombreux entretiens infructueux, j'ai enfin trouvé une entreprise qui m'a accepté : Valeo. Le poste
+							que j'occupe est R&D DSIS Operation Engineer, ce qui signifie que je suis en charge de la gestion des logiciels pour
+							Valeo groupe. Cela passe par la gestion des licences, la gestion des paquets d'installation et la gestion des coûts.
+							</p>
+						</div>
+					</div>
+					
+					<div class="timeline-item">
+						<div class="timeline-content">
+							<h2>Juin 2025 - Septembre 2025<br/></h2>
+						<h2 class="card-title">Stage international</h2>
+						<p>
+							Toujours dans la continuité de mon apprentissage, j'ai dû effectuer un stage de 3 mois à l'international. J'ai pu trouver
+							un stage facilement grâce à Valeo qui possède de nombreuses filiales à l'étranger. J'ai donc été à Prague, en République Tchèque,
+							pendant 3 mois. La mission principale de ce stage était de migrer une solution locale sur les solutions cloud de Valeo.
+							</p>
+						</div>
+					</div>
+
+					<div class="timeline-item">
+						<div class="timeline-content">
+							<h2>???<br/></h2>
+							<h2 class="card-title">A suivre ...</h2>
+							<p>
+								
+							</p>
+						</div>
+					</div>
+				</div>
+			</div>
+		</main>
+		<Footer />
+	</body>
+</html>
