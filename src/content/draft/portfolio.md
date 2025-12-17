@@ -7,7 +7,7 @@ heroImage: '../../assets/portfolio.jpg'
 tags: ['Astro', 'Web', 'Self-hosted']
 ---
 
-En tant qu'ingénieur en informatique, avoir un site portfolio personnel est un gros plus. Cela me permet de développer ou de renforcer mes compétences mais aussi de les montrer aux recruteurs et aux potentiels collaborateurs. Au-delà d'un simple site développé en JavaScript / Markdown, il s'agit d'un ensemble : choix d'outils, pipeline d'intégration continue, build optimisé et stratégie de déploiement adaptée à l'hébergement. 
+En tant qu'ingénieur en informatique, avoir un site portfolio personnel est un gros plus. Cela me permet de développer ou de renforcer mes compétences mais aussi de les montrer aux recruteurs et aux potentiels collaborateurs. Au-delà d'un simple site développé en JavaScript / Markdown, il s'agit d'un ensemble de compétence : choix d'outils, développement, pipeline d'intégration continue, stratégie de déploiement adaptée à l'hébergement...
 
 ## Choix des technologies
 
@@ -20,7 +20,7 @@ Ayant un penchant pour tout ce qui est en raport avec le SysAdmin, le DevOps ou 
 
 Ayant déjà quelques connaissances en site web (cf [mon site de tracking PEA](/blog/peasy-money)), je voulais quelque chose qui se rapproche de react, next.js etc. Au cours de mes recherche, je suis tombé sur le framework Astro. 
 
-<img src="/img/astro.png" alt="Logo de Hetzner" style="display: block; margin: auto; max-width: 70%; height: auto; margin-bottom: 2rem;" />
+<img src="/img/astro.png" alt="Logo d'astro" style="display: block; margin: auto; max-width: 70%; height: auto; margin-bottom: 2rem;" />
 
 Astro est un framework "content-based". Contrairement aux frameworks conçus pour les applications web complexes (comme React/Next.js qui envoient souvent beaucoup de JavaScript), Astro est optimisé pour les sites où le contenu est roi (blogs, sites marketing, portfolios, e-commerce léger). Le gros plus d'astro est que l'on peut écrire des articles en Markdown ou même en MDX et astro s'occupe d'en faire de belles pages et par exetension de beaux articles. Avec markdown, on peut ajouter facilement des tableaux, des morceaux de code (très pratique dans un portfolio de dev !), des images et j'en passe. Pour ce qui est du rendu et des perfomances, Astro a une politique 0 javascript, ce qui veut dire que le rendu final ne contient que du HTML et du CSS. Ainsi les performances sont maximisé. Puisque mon site n'est pas une application et doit juste afficher du contenu en somme, Astro est LE framework idéal pour mon projet. Il reste juste un petit détail : le design du site ? Eh bien Astro permet de créer des templates de sites. Il existe donc des quantités de templates prêtes à l'emploi qui n'attendent que d'être utilisé. Pour ma part j'ai choisi le template de blog base d'astro. Le style me plait et je peux aisément faire les quelques modifs que je souhaite (ajout de la tables des matières, ajout de tags, ...)  
 
