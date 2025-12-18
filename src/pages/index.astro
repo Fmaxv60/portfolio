@@ -42,6 +42,34 @@ import { SITE_TITLE, SITE_DESCRIPTION } from '../consts';
 	</body>
 </html>
 <script>
+	import { gsap } from "gsap";
+	import { ScrollTrigger } from "gsap/ScrollTrigger";
+
+	gsap.registerPlugin(ScrollTrigger);
+
+	const runHeroAnimations = () => {
+		const tl = gsap.timeline({ defaults: { ease: "power2.out", duration: 0.9 } });
+
+		tl.from(".image-container img", { y: 40, opacity: 0, scale: 1 })
+			.from("#hacker-text", { y: 30, opacity: 0 }, "-=0.4")
+			.from(".text-container p", { y: 20, opacity: 0 }, "-=0.3")
+			.from(".text-container a", { y: 20, opacity: 0 }, "-=0.3");
+
+		gsap.from(".image-container img", {
+			scrollTrigger: {
+				trigger: ".image-container",
+				start: "top 80%",
+			},
+			scale: 0.98,
+			duration: 0.6,
+			ease: "power1.out",
+		});
+	};
+
+	document.addEventListener("DOMContentLoaded", runHeroAnimations);
+	document.addEventListener("astro:page-load", runHeroAnimations);
+</script>
+<script>
   const userLang = navigator.language;
   if (!userLang.startsWith('fr')) {
     window.location.href = '/en/';
